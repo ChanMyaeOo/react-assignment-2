@@ -15,17 +15,13 @@ class App extends Component {
     });
   };
 
-  removeCharHandler = char => {
+  removeCharHandler = index => {
     const charArr = this.state.charText.split("");
-    const charIndex = charArr.findIndex(charVal => {
-      return charVal === char;
-    });
+    charArr.splice(index, 1);
 
-    const chars = this.state.charText.split("");
-    chars.splice(charIndex, 1);
     this.setState({
-      charText: chars.join(""),
-      textLength: chars.join("").length
+      charText: charArr.join(""),
+      textLength: charArr.join("").length
     });
   };
 
@@ -37,7 +33,7 @@ class App extends Component {
         <Char
           key={index}
           charText={char}
-          removeChar={() => this.removeCharHandler(char)}
+          removeChar={() => this.removeCharHandler(index)}
         />
       );
     });
